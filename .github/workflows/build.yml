@@ -1,0 +1,12 @@
+on: [push]
+jobs:
+  compile-as-jar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '11'
+      - run: javac $(find src -type f -name "*.java") -d classes/
+      - run: jar cvfe easy-encrypt.jar fr.kinsteen.easyencrypt.Main -C classes fr
