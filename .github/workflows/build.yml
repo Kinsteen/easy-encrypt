@@ -10,3 +10,7 @@ jobs:
           java-version: '11'
       - run: javac $(find src -type f -name "*.java") -d classes/
       - run: jar cvfe easy-encrypt.jar fr.kinsteen.easyencrypt.Main -C classes fr
+       - uses: actions/upload-artifact@v3
+         with:
+           name: easy-encrypt
+           path: easy-encrypt.jar
